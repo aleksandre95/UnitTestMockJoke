@@ -17,6 +17,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import testex.jokefetching.IFetchFactory;
 import testex.jokefetching.IJokeFetch;
 
 /**
@@ -38,7 +39,7 @@ public class JokeFetcherTest {
     @Mock
     private IJokeFetch tambal;
 
-    private JokeFetcher jokeFetcher;
+   
     
     public JokeFetcherTest() {
     }
@@ -56,16 +57,16 @@ public class JokeFetcherTest {
          List<IJokeFetch> fetcher = Arrays.asList(chuckNorris, eduJoke, moma, tambal);
         when(factory.getJokeFetchers("eduprog,chucknorris,chucknorris,moma,tambal")).thenReturn(fetcher);
 
-        List<String> types = Arrays.asList("EduJoke", "ChuckNorris", "Moma", "Tambal");
+        List<String> types = Arrays.asList("EduJoke", "Chuck", "Moma", "Tambal");
         when(factory.getAvailableTypes()).thenReturn(types);
 
-        Joke joke = new Joke("testJoke", "testReference");
+        Joke joke = new Joke("testJokes", "testReference");
         given(chuckNorris.getJoke()).willReturn(joke);
         given(eduJoke.getJoke()).willReturn(joke);
         given(moma.getJoke()).willReturn(joke);
         given(tambal.getJoke()).willReturn(joke);
 
-        jokeFetcher = new JokeFetcher(DateFomatter, factory);
+        jokeFetcher = new JokeFetcher(DataFomatter, factory);
     }
     
     @After

@@ -3,6 +3,7 @@ package testex;
 import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.response.ExtractableResponse;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -104,7 +105,9 @@ public class JokeFetcher {
         case "tambal" : jokes.addJoke(getTambalJoke());break;
       }
     }
-    String timeZoneString = DateFormatter.getFormattedDate(timeZone);
+    Date date = new Date();
+    DateFormatter dataFormatter = new DateFormatter();
+    String timeZoneString = dataFormatter.getFormattedDate(timeZone,date);
     jokes.setTimeZoneString(timeZoneString);
     return jokes;
   }
